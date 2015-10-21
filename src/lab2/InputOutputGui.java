@@ -4,11 +4,12 @@ import javax.swing.JOptionPane;
 
 /**
  * This class is responsible for all input and output in the program.
- * 
- * @author  Jim Lombardo, jlombardo@wctc.edu
+ *
+ * @author Jim Lombardo, jlombardo@wctc.edu
  * @version 1.00
  */
 public class InputOutputGui {
+
     private NameService nameService;
 
     public InputOutputGui() {
@@ -16,14 +17,25 @@ public class InputOutputGui {
     }
 
     public void startConversation() {
-        
-        String fullName = JOptionPane.showInputDialog("Enter full name:");
+
+        String fullName = null; 
         String lastName = "";
-        lastName = nameService.extractLastName(fullName);
-  
+        boolean isNotComplete = false;
+
+        do {
+            try {
+                fullName = JOptionPane.showInputDialog("Enter full name:");
+                lastName = nameService.extractLastName(fullName);
+                isNotComplete = false;
+            } catch (IllegalArgumentException iae) {
+                JOptionPane.showMessageDialog(null, iae.getMessage());
+                isNotComplete = true;
+            }
+        } while (isNotComplete);
+
         String msg = "Your last name is: " + lastName;
         JOptionPane.showMessageDialog(null, msg);
-        
+
     }
-     
+
 }
