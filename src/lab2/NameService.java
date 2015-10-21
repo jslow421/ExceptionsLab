@@ -21,13 +21,13 @@ public class NameService {
      */
     public String extractLastName(String fullName) throws IllegalArgumentException {
         if (fullName == null || fullName.isEmpty()) {
-            throw new IllegalArgumentException("Must enter two names");
+            throw new IllegalArgumentException("Must enter a name");
         } else {
 
             String[] nameParts = fullName.split(" ");
 
             if (nameParts.length < 2) {
-                throw new IllegalArgumentException("Must enter two names");
+                throw new IllegalArgumentException("Must enter a first and last name");
             } else {
                 return nameParts[nameParts.length - 1];
             }
