@@ -21,7 +21,20 @@ public class Challenge1 {
 
     public static void main(String[] args) {
         Challenge1 app = new Challenge1();
-
+        
+        
+        String fullName = JOptionPane.showInputDialog("Enter full name (use Format: first last):");
+        
+        String lastName = null;
+        try{
+            lastName = app.extractLastName(fullName);
+        }catch(IllegalArgumentException iae){
+            System.out.println(iae.getMessage());
+        }
+        String msg = "Your last name is: " + lastName;
+        JOptionPane.showMessageDialog(null, msg);
+        
+/*poor attempt -- should be in the method and output here
         String fullName = JOptionPane.showInputDialog("Enter full name (use Format: first last):");
         
             JOptionPane.showMessageDialog(null, "Please enter a name");
@@ -36,12 +49,30 @@ public class Challenge1 {
             String msg = "Your last name is: " + lastName;
             JOptionPane.showMessageDialog(null, msg);
             }
-        }
+        } */
     }
+    /**
+     * Attempts to extract last name from full name constructed of two
+     * parts -- first name and last name. This method cannot guarantee that the last
+     * part is the last name. It must be assumed so. Be careful.
+     * @param fullName a multi-part entry representing a full name
+     * @return 
+     * @throws IllegalArgumentException if full name is null, or full name is empty,
+     * or full name has less than two parts. If full name has more than two parts
+     * no exception will be thrown, because we cannot know if the last part is
+     * definitely a last name, so we will assume that it is.
+     */
 
-    public String extractLastName(String fullName) {
+    public String extractLastName(String fullName) throws IllegalArgumentException{
+        if(fullName == null || fullName.isEmpty()){
+            throw new IllegalArgumentException("Sorry, full name is required");
+        }
 
         String[] nameParts = fullName.split(" ");
+        if(nameParts.length < 2){
+            throw new IllegalArgumentException("Sorry, you must provide both a "
+                    + "first name and a last name");
+        }
         return nameParts[nameParts.length - 1];
     }
 
