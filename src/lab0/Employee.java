@@ -88,7 +88,9 @@ public class Employee {
     }
 
     public void setLastName(String lastName) {
-        
+        if(lastName == null || lastName.isEmpty()){
+            throw new IllegalArgumentException("First name cannot be null");
+        }
         this.lastName = lastName;
     }
 
