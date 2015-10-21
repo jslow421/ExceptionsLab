@@ -19,13 +19,18 @@ public class NameService {
      * @param fullName - a name containing a first name and a last name
      * @return the last name
      */
-    public String extractLastName(String fullName) throws IllegalArgumentException{
-        if (fullName.split(" ").equals(fullName)) {
+    public String extractLastName(String fullName) throws IllegalArgumentException {
+        if (fullName == null || fullName.isEmpty()) {
             throw new IllegalArgumentException("Must enter two names");
         } else {
 
             String[] nameParts = fullName.split(" ");
-            return nameParts[nameParts.length - 1];
+
+            if (nameParts.length < 2) {
+                throw new IllegalArgumentException("Must enter two names");
+            } else {
+                return nameParts[nameParts.length - 1];
+            }
         }
     }
 
@@ -37,7 +42,7 @@ public class NameService {
      * @return the first name
      */
     public String extractFirstName(String fullName) throws IllegalArgumentException {
-        if (fullName.split(" ").equals(fullName)) {
+        if (fullName == null || fullName.isEmpty()) {
             throw new IllegalArgumentException("Must enter two names");
         } else {
             String[] nameParts = fullName.split(" ");

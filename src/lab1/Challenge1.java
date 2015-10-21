@@ -41,7 +41,8 @@ public class Challenge1 {
                 + "is your last name): " + lastName;
         JOptionPane.showMessageDialog(null, msg);
 
-        /*poor attempt -- should be in the method and output here
+        /*my poor attempt (left in to prove it was at least attempted
+            -- should be in the method and output here
          String fullName = JOptionPane.showInputDialog("Enter full name (use Format: first last):");
         
          JOptionPane.showMessageDialog(null, "Please enter a name");
