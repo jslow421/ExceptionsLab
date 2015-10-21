@@ -17,10 +17,16 @@ public class NameService {
      * 
      * @param fullName - a name containing a first name and a last name
      * @return the last name
+     * @throws lab3.OneOrNoNameEnteredException
      */
-    public String extractLastName(String fullName) {
-        String[] nameParts = fullName.split(" ");
-        return nameParts[LAST_NAME_IDX];
+    public String extractLastName(String fullName) throws OneOrNoNameEnteredException{
+        if (fullName.split(" ").equals(fullName)) {
+            throw new OneOrNoNameEnteredException("Must enter two names");
+        } else {
+
+            String[] nameParts = fullName.split(" ");
+            return nameParts[nameParts.length - 1];
+        }
     }
     
     /**
@@ -29,10 +35,15 @@ public class NameService {
      * 
      * @param fullName - a name containing a first name and a last name
      * @return the first name
+     * @throws lab3.OneOrNoNameEnteredException
      */
-    public String extractFirstName(String fullName) {
-        String[] nameParts = fullName.split(" ");
-        return nameParts[FIRST_NAME_IDX];
+    public String extractFirstName(String fullName) throws OneOrNoNameEnteredException{
+        if (fullName.split(" ").equals(fullName)) {
+            throw new OneOrNoNameEnteredException("Must enter two names");
+        } else {
+            String[] nameParts = fullName.split(" ");
+            return nameParts[FIRST_NAME_IDX];
+        }
     }
 
     /**

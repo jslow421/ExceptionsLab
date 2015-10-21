@@ -1,5 +1,6 @@
 package lab3;
 
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,9 +19,15 @@ public class InputOutputGui {
     public void startConversation() {
         
         String fullName = JOptionPane.showInputDialog("Enter full name:");
+        try{
         String lastName = nameService.extractLastName(fullName);
         String msg = "Your last name is: " + lastName;
-        JOptionPane.showMessageDialog(null, msg);
+        JOptionPane.showMessageDialog(null, msg);}
+        catch(OneOrNoNameEnteredException e){
+            System.out.println(e);
+        } 
+        
+       
         
     }
      
